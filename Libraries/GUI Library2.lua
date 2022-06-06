@@ -1,7 +1,7 @@
 local Library = {}
 function Library:Create(text)
-	if game.CoreGui:FindFirstChild("ProjectCatUI") then
-		game.CoreGui:FindFirstChild("ProjectCatUI"):Destroy()	
+	if game.CoreGui:FindFirstChild("Redify") then
+		game.CoreGui:FindFirstChild("Redify"):Destroy()	
 	end
 	local ProjectCatUI = Instance.new("ScreenGui")
 	local Main = Instance.new("Frame")
@@ -11,7 +11,7 @@ function Library:Create(text)
 	local UICorner = Instance.new("UICorner")
 	local Tabs = Instance.new("Folder")
 	
-	ProjectCatUI.Name = "ProjectCatUI"
+	ProjectCatUI.Name = "Redify"
 	ProjectCatUI.Parent = game:WaitForChild("CoreGui")
 	ProjectCatUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
