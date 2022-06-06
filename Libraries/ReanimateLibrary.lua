@@ -27,6 +27,31 @@ function ReanimateAPI.Notification(Texto)
         Text = Texto
     })
 end
+function ReanimateAPI.ReCreateAccessoryWelds(Model,Accessory) -- Inspiration from DevForum Post made by admin.
+	if not Accessory:IsA("Accessory") then return end
+
+	local Handle = Accessory:FindFirstChild("Handle")
+	pcall(function() Handle:FindFirstChild("AccessoryWeld"):Destroy() end)
+
+	local NewWeld = Instance.new("Weld")
+	NewWeld.Parent = Accessory.Handle
+	NewWeld.Name = "AccessoryWeld"
+	NewWeld.Part0 = Handle
+
+	local Attachment = Handle:FindFirstChildOfClass("Attachment")
+
+	if Attachment then
+		NewWeld.C0 = Attachment.CFrame
+		NewWeld.C1 = Model:FindFirstChild(tostring(Attachment), true).CFrame
+		NewWeld.Part1 = Model:FindFirstChild(tostring(Attachment), true).Parent
+	else
+		NewWeld.Part1 = Model:FindFirstChild("Head")
+		NewWeld.C1 = CFrame.new(0,Model:FindFirstChild("Head").Size.Y / 2,0) * Accessory.AttachmentPoint:Inverse()
+	end
+
+	Handle.CFrame = NewWeld.Part1.CFrame * NewWeld.C1 * NewWeld.C0:Inverse()
+end
+
 function ReanimateAPI.Align(Part0,Part1,Position,Orientation)
     local AlignPosition = Instance.new("AlignPosition")
     AlignPosition.Parent = Part0
@@ -85,7 +110,7 @@ function ReanimateAPI.SimpleReanimate()
         task.wait(0.55)
     end
     
-    local Libraries = loadstring(game:HttpGet("https://raw.githubusercontent.com/StrokeThePea/Frostware/main/OpenSourceStuff/API.lua"))()
+    
     local Data = ReplicatedStorage:FindFirstChild("FrostwareData")
     local Player = game:GetService("Players").LocalPlayer
     local Character = Player["Character"]
@@ -133,7 +158,18 @@ function ReanimateAPI.SimpleReanimate()
         end
     end
     HatsNameTable = nil
-    Libraries.Properties()
+
+    settings().Physics.AllowSleep = false
+    settings().Physics.ForceCSGv2 = false
+    settings().Physics.DisableCSGv2 = true
+    settings().Physics.UseCSGv2 = false
+    settings().Rendering.EagerBulkExecution = true
+    settings().Physics.ThrottleAdjustTime = math.huge
+    settings().Physics.PhysicsEnvironmentalThrottle = Enum.EnviromentalPhysicsThrottle.Disabled
+    HiddenProps(workspace, "HumanoidOnlySetCollisionsOnStateChange", Enum.HumanoidOnlySetCollisionsOnStateChange.Disabled)
+    HiddenProps(workspace, "InterpolationThrottling", Enum.InterpolationThrottlingMode.Disabled)
+    game.Players.LocalPlayer.ReplicationFocus = workspace
+
     local Clone = Data.R6FakeRig:Clone()
     Clone.Parent = workspace
     Clone.Name = "Raw"
@@ -143,11 +179,11 @@ function ReanimateAPI.SimpleReanimate()
             local FakeHat = Object:Clone()
             FakeHat.Parent = FakeHats
             FakeHat.Handle.Transparency = 1
-            Libraries.ReCreateAccessoryWelds(Clone, FakeHat)
+            ReanimateAPI.ReCreateAccessoryWelds(Clone, FakeHat)
     
             local FakeHat2 = FakeHat:Clone()
             FakeHat2.Parent = Clone
-            Libraries.ReCreateAccessoryWelds(Clone, FakeHat2)
+            ReanimateAPI.ReCreateAccessoryWelds(Clone, FakeHat2)
         end
     end
     for Index, Object in pairs(Clone:GetDescendants()) do
@@ -337,7 +373,6 @@ function ReanimateAPI.BulletReanimate()
         task.wait(0.55)
     end
 
-    local Libraries = loadstring(game:HttpGet("https://raw.githubusercontent.com/StrokeThePea/Frostware/main/OpenSourceStuff/API.lua"))()
     local Data = ReplicatedStorage:FindFirstChild("FrostwareData")
     local Player = game:GetService("Players").LocalPlayer
     local Character = Player["Character"]
@@ -406,7 +441,18 @@ function ReanimateAPI.BulletReanimate()
         end
     end
     HatsNameTable = nil
-    Libraries.Properties()
+
+    settings().Physics.AllowSleep = false
+    settings().Physics.ForceCSGv2 = false
+    settings().Physics.DisableCSGv2 = true
+    settings().Physics.UseCSGv2 = false
+    settings().Rendering.EagerBulkExecution = true
+    settings().Physics.ThrottleAdjustTime = math.huge
+    settings().Physics.PhysicsEnvironmentalThrottle = Enum.EnviromentalPhysicsThrottle.Disabled
+    HiddenProps(workspace, "HumanoidOnlySetCollisionsOnStateChange", Enum.HumanoidOnlySetCollisionsOnStateChange.Disabled)
+    HiddenProps(workspace, "InterpolationThrottling", Enum.InterpolationThrottlingMode.Disabled)
+    game.Players.LocalPlayer.ReplicationFocus = workspace
+    
     local Clone = Data.R6FakeRig:Clone()
     Clone.Parent = workspace
     Clone.Name = "Raw"
@@ -416,11 +462,11 @@ function ReanimateAPI.BulletReanimate()
             local FakeHat = Object:Clone()
             FakeHat.Parent = FakeHats
             FakeHat.Handle.Transparency = 1
-            Libraries.ReCreateAccessoryWelds(Clone, FakeHat)
+            ReanimateAPI.ReCreateAccessoryWelds(Clone, FakeHat)
 
             local FakeHat2 = FakeHat:Clone()
             FakeHat2.Parent = Clone
-            Libraries.ReCreateAccessoryWelds(Clone, FakeHat2)
+            ReanimateAPI.ReCreateAccessoryWelds(Clone, FakeHat2)
         end
     end
     for Index, Object in pairs(Clone:GetDescendants()) do
@@ -624,7 +670,6 @@ function ReanimateAPI.StopScript()
     end
     getgenv().ScriptStop = true
     getgenv().AnimationRunning = false
-    local Libraries = loadstring(game:HttpGet("https://raw.githubusercontent.com/StrokeThePea/Frostware/main/OpenSourceStuff/API.lua"))()
     for i,v in pairs(getgenv().EventTables) do
         v:Disconnect()
     end
@@ -674,7 +719,7 @@ function ReanimateAPI.StopScript()
             local FakeAccessory = Accessory:Clone()
             FakeAccessory.Parent = Character
             FakeAccessory.Handle.Transparency = 1
-            Libraries.ReCreateAccessoryWelds(Character, FakeAccessory)
+            ReanimateAPI.ReCreateAccessoryWelds(Character, FakeAccessory)
             ReanimateAPI.Align(OGChar[FakeAccessory.Name].Handle, FakeAccessory.Handle)
         end
     end
