@@ -900,4 +900,4 @@ function ReanimateAPI.PlayAnimation(ID,SpeedOffset,AudioWanted,AudioPath)
         end
     end
 end
-
+return ReanimateAPI
