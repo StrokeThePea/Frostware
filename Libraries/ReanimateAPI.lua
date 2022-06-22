@@ -1,6 +1,3 @@
--- Made by: Gelatek.
--- Special Help: Mizt (Hat Renamer) / ProductionTakeOne (Optimizations) / Iss0 (Net Properties) / Pare (Teaching me how to make Anim ID Player)
-
 local IsCFrameEnabled
 if not getgenv().FrostwareConfig then 
 	getgenv().FrostwareConfig = {
@@ -210,21 +207,17 @@ function ReanimateAPI.StopScript()
 		RealChar:FindFirstChild("Bullet"):ClearAllChildren()		
 		if RealChar.Humanoid.RigType == Enum.HumanoidRigType.R15 then
 			RealChar:FindFirstChild("Bullet").Transparency = 0
-			if RealChar:FindFirstChild("SniperShoulderL") then
 			local Hat = RealChar:FindFirstChild("SniperShoulderL")
-				Hat.Handle:ClearAllChildren()
-				ReanimateAPI.Align(Hat.Handle, CloneChar:FindFirstChild("Left Arm"), Vector3.new(0,-0.52,0), Vector3.new(0,0,0))
-			end
+			Hat.Handle:ClearAllChildren()
 			ReanimateAPI.Align(RealChar:FindFirstChild("Bullet"), CloneChar:FindFirstChild("Left Arm"), Vector3.new(0,-0.4085,0), Vector3.new(0,0,0))
+			ReanimateAPI.Align(Hat.Handle, CloneChar:FindFirstChild("Left Arm"), Vector3.new(0,-0.52,0), Vector3.new(0,0,0))
 		else
 			if not CloneChar:FindFirstChild("PDEATH DETECT") then
 				RealChar:FindFirstChild("Bullet").Transparency = 0
-				if RealChar:FindFirstChild("Robloxclassicred") then
-					local Hat = RealChar:FindFirstChild("Robloxclassicred")
-					Hat.Handle:ClearAllChildren()
-					ReanimateAPI.Align(Hat.Handle, CloneChar:FindFirstChild("Left Leg"), Vector3.new(0,0,0), Vector3.new(90,0,0))
-				end
+				local Hat = RealChar:FindFirstChild("Robloxclassicred")
+				Hat.Handle:ClearAllChildren()
 				ReanimateAPI.Align(RealChar:FindFirstChild("Bullet"), CloneChar:FindFirstChild("Left Leg"))
+				ReanimateAPI.Align(Hat.Handle, CloneChar:FindFirstChild("Left Leg"), Vector3.new(0,0,0), Vector3.new(90,0,0))
 			else
 				RealChar:FindFirstChild("Bullet").Transparency = 1
 				ReanimateAPI.Align(RealChar:FindFirstChild("Bullet"), CloneChar:FindFirstChild("HumanoidRootPart"))
@@ -392,7 +385,7 @@ function ReanimateAPI.SimpleReanimate()
 				Object.CanCollide = false
 				Object.CanQuery = false
 				Object.RootPriority = 127
-				sethiddenproperty(Object, 'NetworkOwnershipRule', Enum.NetworkOwnership.Manual)
+				HiddenProp(Object, 'NetworkOwnershipRule', Enum.NetworkOwnership.Manual)
 			end
 		end
 		for Index,Object in pairs(CloneDescendants) do
@@ -401,8 +394,8 @@ function ReanimateAPI.SimpleReanimate()
 			end
 		end
 		-- Network
-		sethiddenproperty(workspace, 'HumanoidOnlySetCollisionsOnStateChange', Enum.HumanoidOnlySetCollisionsOnStateChange.Disabled)
-		sethiddenproperty(workspace, 'InterpolationThrottling', Enum.InterpolationThrottlingMode.Disabled)
+		HiddenProp(workspace, 'HumanoidOnlySetCollisionsOnStateChange', Enum.HumanoidOnlySetCollisionsOnStateChange.Disabled)
+		HiddenProp(workspace, 'InterpolationThrottling', Enum.InterpolationThrottlingMode.Disabled)
 		SetScript(Player, "NetworkIsSleeping", true)
 		settings().Physics.PhysicsEnvironmentalThrottle = Enum.EnviromentalPhysicsThrottle.Disabled
 		settings().Physics.AllowSleep = false
@@ -550,10 +543,6 @@ function ReanimateAPI.SimpleReanimate()
 	end
 	ReanimateAPI.PlaySound(5949365181)
 end
-
-
-
-
 
 
 
@@ -718,7 +707,7 @@ function ReanimateAPI.BulletReanimate()
 				Object.CanCollide = false
 				Object.CanQuery = false
 				Object.RootPriority = 127
-				sethiddenproperty(Object, 'NetworkOwnershipRule', Enum.NetworkOwnership.Manual)
+				HiddenProp(Object, 'NetworkOwnershipRule', Enum.NetworkOwnership.Manual)
 			end
 		end
 		for Index,Object in pairs(CloneDescendants) do
@@ -727,8 +716,8 @@ function ReanimateAPI.BulletReanimate()
 			end
 		end
 		-- Network
-		sethiddenproperty(workspace, 'HumanoidOnlySetCollisionsOnStateChange', Enum.HumanoidOnlySetCollisionsOnStateChange.Disabled)
-		sethiddenproperty(workspace, 'InterpolationThrottling', Enum.InterpolationThrottlingMode.Disabled)
+		HiddenProp(workspace, 'HumanoidOnlySetCollisionsOnStateChange', Enum.HumanoidOnlySetCollisionsOnStateChange.Disabled)
+		HiddenProp(workspace, 'InterpolationThrottling', Enum.InterpolationThrottlingMode.Disabled)
 		SetScript(Player, "NetworkIsSleeping", true)
 		settings().Physics.PhysicsEnvironmentalThrottle = Enum.EnviromentalPhysicsThrottle.Disabled
 		settings().Physics.AllowSleep = false
@@ -955,6 +944,7 @@ function ReanimateAPI.PermaDeathReanimate()
 	end
 	if Humanoid.RigType == Enum.HumanoidRigType.R15 then -- Checks player RigType
 		PlayerRigType = "R15"
+		Character.HumanoidRootPart.Transparency = 0.5
 	else
 		PlayerRigType = "R6"
 	end
@@ -1069,7 +1059,7 @@ function ReanimateAPI.PermaDeathReanimate()
 				Object.CanCollide = false
 				Object.CanQuery = false
 				Object.RootPriority = 127
-				sethiddenproperty(Object, 'NetworkOwnershipRule', Enum.NetworkOwnership.Manual)
+				HiddenProp(Object, 'NetworkOwnershipRule', Enum.NetworkOwnership.Manual)
 			end
 		end
 		for Index,Object in pairs(CloneDescendants) do
@@ -1078,8 +1068,8 @@ function ReanimateAPI.PermaDeathReanimate()
 			end
 		end
 		-- Network
-		sethiddenproperty(workspace, 'HumanoidOnlySetCollisionsOnStateChange', Enum.HumanoidOnlySetCollisionsOnStateChange.Disabled)
-		sethiddenproperty(workspace, 'InterpolationThrottling', Enum.InterpolationThrottlingMode.Disabled)
+		HiddenProp(workspace, 'HumanoidOnlySetCollisionsOnStateChange', Enum.HumanoidOnlySetCollisionsOnStateChange.Disabled)
+		HiddenProp(workspace, 'InterpolationThrottling', Enum.InterpolationThrottlingMode.Disabled)
 		SetScript(Player, "NetworkIsSleeping", true)
 		settings().Physics.PhysicsEnvironmentalThrottle = Enum.EnviromentalPhysicsThrottle.Disabled
 		settings().Physics.AllowSleep = false
@@ -1252,6 +1242,57 @@ function ReanimateAPI.PermaDeathReanimate()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/StrokeThePea/Frostware/main/Libraries/Animations.lua"))()
 	end
 	ReanimateAPI.PlaySound(5949365181)
+end
+function ReanimateAPI.SetupFolder()
+	-- To Finish
+	if not makefolder then
+		ReanimateAPI.Notification("Missing Function (makefolder).")
+		ReanimateAPI.PlaySound(9074670249)
+		return
+	end
+	if not isfolder then
+		ReanimateAPI.Notification("Missing Function (isfolder).")
+		ReanimateAPI.PlaySound(9074670249)
+		return
+	end
+	if not writefile then
+		ReanimateAPI.Notification("Missing Function (writefile).")
+		ReanimateAPI.PlaySound(9074670249)
+		return
+	end
+	if not isfolder("FrostwareSongs") then
+		makefolder("FrostwareSongs")
+	end
+	if not isfile("FrostwareSongs/NeptunianV.mp3") then
+		writefile("FrostwareSongs/NeptunianV.mp3", game:HttpGet("https://raw.githubusercontent.com/StrokeThePea/Frostware/main/Music/Under%20Night%20In-Birth%20ost%20-%20Beat%20Eat%20Nest%20%5BExtended%5D.mp3"))
+	end
+	if not isfile("FrostwareSongs/ANIMSmoothMoves.mp3") then
+		writefile("FrostwareSongs/ANIMSmoothMoves.mp3", game:HttpGet("https://github.com/StrokeThePea/Frostware/blob/main/Music/Animations/Smooth%20Moves.mp3?raw=true"))
+	end
+	if not isfile("FrostwareSongs/ANIMOrangeJustice.mp3") then
+		writefile("FrostwareSongs/ANIMOrangeJustice.mp3", game:HttpGet("https://github.com/StrokeThePea/Frostware/blob/main/Music/Animations/Orange%20Justice.mp3?raw=true"))
+	end
+	if not isfile("FrostwareSongs/ANIMFloss.mp3") then
+		writefile("FrostwareSongs/ANIMFloss.mp3", game:HttpGet("https://github.com/StrokeThePea/Frostware/blob/main/Music/Animations/Floss.mp3?raw=true"))
+	end
+	if not isfile("FrostwareSongs/ANIMFreestylin'.mp3") then
+		writefile("FrostwareSongs/ANIMFreestylin'.mp3", game:HttpGet("https://github.com/StrokeThePea/Frostware/blob/main/Music/Animations/Freestylin'.mp3?raw=true"))
+	end
+	if not isfile("FrostwareSongs/ANIMBreakDown.mp3") then
+		writefile("FrostwareSongs/ANIMBreakDown.mp3", game:HttpGet("https://github.com/StrokeThePea/Frostware/blob/main/Music/Animations/Breakdown.mp3?raw=true"))
+	end
+	if not isfile("FrostwareSongs/ANIMElectroSwing.mp3") then
+		writefile("FrostwareSongs/ANIMElectroSwing.mp3", game:HttpGet("https://github.com/StrokeThePea/Frostware/blob/main/Music/Animations/Electro%20Swing.mp3?raw=true"))
+	end
+	if not isfile("FrostwareSongs/ANIMParrot.mp3") then
+		writefile("FrostwareSongs/ANIMParrot.mp3", game:HttpGet("https://github.com/StrokeThePea/Frostware/blob/main/Music/Animations/Parrot.mp3?raw=true"))
+	end
+	if not isfile("FrostwareSongs/ANIMCaramellDansen.mp3") then
+		writefile("FrostwareSongs/ANIMCaramellDansen.mp3", game:HttpGet("https://github.com/StrokeThePea/Frostware/blob/main/Music/Animations/Carma.mp3?raw=true"))
+	end
+	if not isfile("FrostwareSongs/ANIMBoing.mp3") then
+		writefile("FrostwareSongs/ANIMBoing.mp3", game:HttpGet("https://github.com/StrokeThePea/Frostware/blob/main/Music/Animations/Boing.mp3?raw=true"))
+	end
 end
 function ReanimateAPI.LoadMusicFromFiles(AudioInstance,Path)
 	local CustomAssetFunction = getcustomasset or getsynasset or function() end
