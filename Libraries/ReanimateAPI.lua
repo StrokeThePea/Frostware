@@ -1,5 +1,5 @@
--- Made by: Gelatek, TypicalUsername and Mizt.
--- Special Help: ProductionTakeOne (Optimizations) / Iss0 (Net Properties)
+-- Made by: Gelatek.
+-- Special Help: Mizt (Hat Renamer) / ProductionTakeOne (Optimizations) / Iss0 (Net Properties)
 
 local IsCFrameEnabled
 if not getgenv().FrostwareConfig then 
