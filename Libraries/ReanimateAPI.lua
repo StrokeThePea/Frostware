@@ -204,7 +204,10 @@ function ReanimateAPI.StopScript()
 	CreateJoint("Right Hip",Torso,RL,CFrame.new(1, -1, 0, 0, 0, 1, 0, 1, -0, -1, 0, 0),CFrame.new(0.5, 1, 0, 0, 0, 1, 0, 1, -0, -1, 0, 0))
 	CreateJoint("Left Hip",Torso,LL,CFrame.new(-1, -1, 0, 0, 0, -1, 0, 1, 0, 1, 0, 0),CFrame.new(-0.5, 1, 0, 0, 0, -1, 0, 1, 0, 1, 0, 0))
 	if RealChar:FindFirstChild("Bullet") then
-		RealChar:FindFirstChild("Bullet"):ClearAllChildren()		
+		RealChar:FindFirstChild("Bullet"):ClearAllChildren()
+		if RealChar:FindFirstChild("Bullet"):FindFirstChild("BodyPosition") then
+			RealChar:FindFirstChild("Bullet"):FindFirstChild("BodyPosition"):Destroy()	
+		end
 		if RealChar.Humanoid.RigType == Enum.HumanoidRigType.R15 then
 			RealChar:FindFirstChild("Bullet").Transparency = 0
 			local Hat = RealChar:FindFirstChild("SniperShoulderL")
