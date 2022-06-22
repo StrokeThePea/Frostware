@@ -955,7 +955,6 @@ function ReanimateAPI.PermaDeathReanimate()
 	end
 	if Humanoid.RigType == Enum.HumanoidRigType.R15 then -- Checks player RigType
 		PlayerRigType = "R15"
-		Character.HumanoidRootPart.Transparency = 0.5
 	else
 		PlayerRigType = "R6"
 	end
