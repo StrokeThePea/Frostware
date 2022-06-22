@@ -1,5 +1,5 @@
 -- Made by: Gelatek.
--- Special Help: Mizt (Hat Renamer) / ProductionTakeOne (Optimizations) / Iss0 (Net Properties)
+-- Special Help: Mizt (Hat Renamer) / ProductionTakeOne (Optimizations) / Iss0 (Net Properties) / Pare (Teaching me how to make Anim ID Player)
 
 local IsCFrameEnabled
 if not getgenv().FrostwareConfig then 
