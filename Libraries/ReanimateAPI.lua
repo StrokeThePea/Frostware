@@ -1387,4 +1387,12 @@ end
 function ReanimateAPI.LoadLibrary()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/StrokeThePea/Frostware/main/Libraries/LoadLibrary.lua"))()
 end
+function ReanimateAPI.ScriptCheck()
+	local PartCheck = Instance.new("Part", workspace)
+	PartCheck.Name = "ScriptCheck"
+	PartCheck.CanCollide = false
+	PartCheck.Transparency = 1
+	PartCheck.Anchored = true
+	PartCheck.Position = Vector3.new(0,1000,0)
+end
 return ReanimateAPI
