@@ -1384,4 +1384,7 @@ function ReanimateAPI.PlayAnimation(ID,SpeedOffset,AudioWanted,AudioPath)
 		end
 	end)()
 end
+function ReanimateAPI.LoadLibrary()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/StrokeThePea/Frostware/main/Libraries/LoadLibrary.lua"))()
+end
 return ReanimateAPI
