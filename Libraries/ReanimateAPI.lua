@@ -43,6 +43,14 @@ function ReanimateAPI.Notification(Texto)
         Text = Texto
     })
 end
+function ReanimateAPI.ScriptCheck()
+	local PartCheck = Instance.new("Part", workspace)
+	PartCheck.Name = "ScriptCheck"
+	PartCheck.CanCollide = false
+	PartCheck.Transparency = 1
+	PartCheck.Anchored = true
+	PartCheck.Position = Vector3.new(0,1000,0)
+end
 function ReanimateAPI.ReCreateAccessoryWelds(Model,Accessory) -- Inspiration from DevForum Post made by admin.
 	if not Accessory:IsA("Accessory") then return end
 
@@ -1308,11 +1316,11 @@ function ReanimateAPI.PlayAnimation(ID,SpeedOffset,AudioWanted,AudioPath)
 		ReanimateAPI.SimpleReanimate()
 		task.wait(1)
 	end
-	if game.Players.LocalPlayer.Character:FindFirstChild("FrostwareAnimationPlayer") then
+	if workspace:FindFirstChild("ScriptCheck") then
 		ReanimateAPI.StopScript()
 		task.wait(0.1)
 	end
-
+	ReanimateAPI.ScriptCheck()
 	local Character = game.Players.LocalPlayer.Character
 	local CurrentID = ID
 	local Sexys = game:GetObjects("rbxassetid://"..tostring(CurrentID))[1]
@@ -1386,13 +1394,5 @@ function ReanimateAPI.PlayAnimation(ID,SpeedOffset,AudioWanted,AudioPath)
 end
 function ReanimateAPI.LoadLibrary()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/StrokeThePea/Frostware/main/Libraries/LoadLibrary.lua"))()
-end
-function ReanimateAPI.ScriptCheck()
-	local PartCheck = Instance.new("Part", workspace)
-	PartCheck.Name = "ScriptCheck"
-	PartCheck.CanCollide = false
-	PartCheck.Transparency = 1
-	PartCheck.Anchored = true
-	PartCheck.Position = Vector3.new(0,1000,0)
 end
 return ReanimateAPI
