@@ -151,7 +151,9 @@ function ReanimateAPI.StopScript()
 	
 	local CloneChar = workspace["Raw"]
 	local RealChar = getgenv().OGChar
-	
+	CloneChar.Humanoid.WalkSpeed = 16
+	CloneChar.Humanoid.JumpPower = 50
+	CloneChar.Humanoid.AutoRotate = true
 	local Head,Torso,Root,RA,LA,RL,LL = CloneChar.Head, CloneChar.Torso, CloneChar.HumanoidRootPart, CloneChar["Right Arm"], CloneChar["Left Arm"], CloneChar["Right Leg"], CloneChar["Left Leg"]
 	Root.RootJoint:Destroy()
 	Root.Anchored = true
