@@ -541,6 +541,9 @@ function ReanimateAPI.SimpleReanimate()
 		Player.Character = workspace[Player.Name]
 		Character:BreakJoints()
 		getgenv().OGChar = nil
+		if workspace:FindFirstChild("ScriptCheck") then
+			workspace:FindFirstChild("ScriptCheck"):Destroy()
+		end
 	end))
 	table.insert(Events, Player.CharacterAdded:Connect(function()
 		for Index,RBXSignalEvent in pairs(Events) do
@@ -551,6 +554,9 @@ function ReanimateAPI.SimpleReanimate()
 		Player.Character = workspace[Player.Name]
 		Character:BreakJoints()
 		getgenv().OGChar = nil
+		if workspace:FindFirstChild("ScriptCheck") then
+			workspace:FindFirstChild("ScriptCheck"):Destroy()
+		end
 	end))
 	if AreAnimationsDisabled == false then
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/StrokeThePea/Frostware/main/Libraries/Animations.lua"))()
@@ -884,6 +890,9 @@ function ReanimateAPI.BulletReanimate()
 		Player.Character = workspace[Player.Name]
 		Character:BreakJoints()
 		getgenv().OGChar = nil
+		if workspace:FindFirstChild("ScriptCheck") then
+			workspace:FindFirstChild("ScriptCheck"):Destroy()
+		end
 	end))
 	table.insert(Events, Player.CharacterAdded:Connect(function()
 		for Index,RBXSignalEvent in pairs(Events) do
@@ -895,6 +904,9 @@ function ReanimateAPI.BulletReanimate()
 		Player.Character = workspace[Player.Name]
 		Character:BreakJoints()
 		getgenv().OGChar = nil
+		if workspace:FindFirstChild("ScriptCheck") then
+			workspace:FindFirstChild("ScriptCheck"):Destroy()
+		end
 	end))
 	if AreAnimationsDisabled == false then
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/StrokeThePea/Frostware/main/Libraries/Animations.lua"))()
@@ -1240,6 +1252,9 @@ function ReanimateAPI.PermaDeathReanimate()
 		Player.Character = workspace[Player.Name]
 		Character:BreakJoints()
 		getgenv().OGChar = nil
+		if workspace:FindFirstChild("ScriptCheck") then
+			workspace:FindFirstChild("ScriptCheck"):Destroy()
+		end
 	end))
 	table.insert(Events, Player.CharacterAdded:Connect(function()
 		for Index,RBXSignalEvent in pairs(Events) do
@@ -1251,6 +1266,9 @@ function ReanimateAPI.PermaDeathReanimate()
 		Player.Character = workspace[Player.Name]
 		Character:BreakJoints()
 		getgenv().OGChar = nil
+		if workspace:FindFirstChild("ScriptCheck") then
+			workspace:FindFirstChild("ScriptCheck"):Destroy()
+		end
 	end))
 	if AreAnimationsDisabled == false then
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/StrokeThePea/Frostware/main/Libraries/Animations.lua"))()
