@@ -1,6 +1,7 @@
+
 -- Credits: Gelatek (Main Dev)
 -- Special Thanks: Mizt (Hat Renamer), Iss0 (Net Stuff), ProductioNTakeOne (Optimizations), Pare (Help with Anim ID Player)
--- Version: 1.2
+-- Version: 1.2.1
 local IsCFrameEnabled
 if not getgenv().FrostwareConfig then 
 	getgenv().FrostwareConfig = {
@@ -164,7 +165,9 @@ function ReanimateAPI.StopScript()
 		CloneChar.FrostwareAnimationPlayer:Destroy()  
 		CloneChar.FrostwareAnimationMusic:Destroy()
 		workspace.AntiScriptRun:Destroy()   
-		workspace.ScriptCheck:Destroy() 
+	end)
+	spawn(function()
+		game:GetService("Workspace").ScriptCheck:Destroy()
 	end)
 	for Index,Objects in pairs(Torso:GetDescendants()) do
 		if Objects:IsA("Motor6D") then
@@ -174,6 +177,9 @@ function ReanimateAPI.StopScript()
 			Objects:Destroy()
 		end
 		if Objects:IsA("Weld") then
+			Objects:Destroy()
+		end
+		if Objects:IsA("Sound") then
 			Objects:Destroy()
 		end
 	end
@@ -1274,57 +1280,6 @@ function ReanimateAPI.PermaDeathReanimate()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/StrokeThePea/Frostware/main/Libraries/Animations.lua"))()
 	end
 	ReanimateAPI.PlaySound(5949365181)
-end
-function ReanimateAPI.SetupFolder()
-	-- To Finish
-	if not makefolder then
-		ReanimateAPI.Notification("Missing Function (makefolder).")
-		ReanimateAPI.PlaySound(9074670249)
-		return
-	end
-	if not isfolder then
-		ReanimateAPI.Notification("Missing Function (isfolder).")
-		ReanimateAPI.PlaySound(9074670249)
-		return
-	end
-	if not writefile then
-		ReanimateAPI.Notification("Missing Function (writefile).")
-		ReanimateAPI.PlaySound(9074670249)
-		return
-	end
-	if not isfolder("FrostwareSongs") then
-		makefolder("FrostwareSongs")
-	end
-	if not isfile("FrostwareSongs/NeptunianV.mp3") then
-		writefile("FrostwareSongs/NeptunianV.mp3", game:HttpGet("https://raw.githubusercontent.com/StrokeThePea/Frostware/main/Music/Under%20Night%20In-Birth%20ost%20-%20Beat%20Eat%20Nest%20%5BExtended%5D.mp3"))
-	end
-	if not isfile("FrostwareSongs/ANIMSmoothMoves.mp3") then
-		writefile("FrostwareSongs/ANIMSmoothMoves.mp3", game:HttpGet("https://github.com/StrokeThePea/Frostware/blob/main/Music/Animations/Smooth%20Moves.mp3?raw=true"))
-	end
-	if not isfile("FrostwareSongs/ANIMOrangeJustice.mp3") then
-		writefile("FrostwareSongs/ANIMOrangeJustice.mp3", game:HttpGet("https://github.com/StrokeThePea/Frostware/blob/main/Music/Animations/Orange%20Justice.mp3?raw=true"))
-	end
-	if not isfile("FrostwareSongs/ANIMFloss.mp3") then
-		writefile("FrostwareSongs/ANIMFloss.mp3", game:HttpGet("https://github.com/StrokeThePea/Frostware/blob/main/Music/Animations/Floss.mp3?raw=true"))
-	end
-	if not isfile("FrostwareSongs/ANIMFreestylin'.mp3") then
-		writefile("FrostwareSongs/ANIMFreestylin'.mp3", game:HttpGet("https://github.com/StrokeThePea/Frostware/blob/main/Music/Animations/Freestylin'.mp3?raw=true"))
-	end
-	if not isfile("FrostwareSongs/ANIMBreakDown.mp3") then
-		writefile("FrostwareSongs/ANIMBreakDown.mp3", game:HttpGet("https://github.com/StrokeThePea/Frostware/blob/main/Music/Animations/Breakdown.mp3?raw=true"))
-	end
-	if not isfile("FrostwareSongs/ANIMElectroSwing.mp3") then
-		writefile("FrostwareSongs/ANIMElectroSwing.mp3", game:HttpGet("https://github.com/StrokeThePea/Frostware/blob/main/Music/Animations/Electro%20Swing.mp3?raw=true"))
-	end
-	if not isfile("FrostwareSongs/ANIMParrot.mp3") then
-		writefile("FrostwareSongs/ANIMParrot.mp3", game:HttpGet("https://github.com/StrokeThePea/Frostware/blob/main/Music/Animations/Parrot.mp3?raw=true"))
-	end
-	if not isfile("FrostwareSongs/ANIMCaramellDansen.mp3") then
-		writefile("FrostwareSongs/ANIMCaramellDansen.mp3", game:HttpGet("https://github.com/StrokeThePea/Frostware/blob/main/Music/Animations/Carma.mp3?raw=true"))
-	end
-	if not isfile("FrostwareSongs/ANIMBoing.mp3") then
-		writefile("FrostwareSongs/ANIMBoing.mp3", game:HttpGet("https://github.com/StrokeThePea/Frostware/blob/main/Music/Animations/Boing.mp3?raw=true"))
-	end
 end
 function ReanimateAPI.LoadMusicFromFiles(AudioInstance,Path)
 	local CustomAssetFunction = getcustomasset or getsynasset or function() end
