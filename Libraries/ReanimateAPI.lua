@@ -1,7 +1,7 @@
 
 -- Credits: Gelatek (Main Dev)
 -- Special Thanks: Mizt (Hat Renamer), Iss0 (Net Stuff), ProductioNTakeOne (Optimizations), Pare (Help with Anim ID Player)
--- Version: 1.2.2
+-- Version: 1.2.3
 local IsCFrameEnabled
 if not getgenv().FrostwareConfig then 
 	getgenv().FrostwareConfig = {
@@ -168,9 +168,9 @@ function ReanimateAPI.StopScript()
 		CloneChar.FrostwareAnimationMusic:Destroy()
 		workspace.AntiScriptRun:Destroy()   
 	end)
-	spawn(function()
+	if game:GetService("Workspace"):FindFirstChild("ScriptCheck") then
 		game:GetService("Workspace").ScriptCheck:Destroy() -- i fucking hate this fix
-	end)
+	end
 	
 	for Index,Objects in pairs(Torso:GetDescendants()) do
 		if Objects:IsA("Motor6D") then
