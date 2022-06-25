@@ -1,7 +1,7 @@
 
 -- Credits: Gelatek (Main Dev)
 -- Special Thanks: Mizt (Hat Renamer), Iss0 (Net Stuff), ProductioNTakeOne (Optimizations), Pare (Help with Anim ID Player)
--- Version: 1.2.1
+-- Version: 1.2.2
 local IsCFrameEnabled
 if not getgenv().FrostwareConfig then 
 	getgenv().FrostwareConfig = {
@@ -152,7 +152,9 @@ function ReanimateAPI.StopScript()
 	getgenv().FrostwareConfig.DisconnectPartFromCFrame = false
 	getgenv().FrostwareConfig.ScriptStopped = true
 	getgenv().FrostwareConfig.AnimationRunning = false
-	
+	for Index,Loop in pairs(getgenv().FrostwareConfig.TableOfEvents) do
+		Loop:Disconnect()
+	end
 	local CloneChar = workspace["Raw"]
 	local RealChar = getgenv().OGChar
 	CloneChar.Humanoid.WalkSpeed = 16
@@ -167,8 +169,9 @@ function ReanimateAPI.StopScript()
 		workspace.AntiScriptRun:Destroy()   
 	end)
 	spawn(function()
-		game:GetService("Workspace").ScriptCheck:Destroy()
+		game:GetService("Workspace").ScriptCheck:Destroy() -- i fucking hate this fix
 	end)
+	
 	for Index,Objects in pairs(Torso:GetDescendants()) do
 		if Objects:IsA("Motor6D") then
 			Objects:Destroy()
