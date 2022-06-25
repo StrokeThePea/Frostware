@@ -1,3 +1,6 @@
+-- Credits: Gelatek (Main Dev)
+-- Special Thanks: Mizt (Hat Renamer), Iss0 (Net Stuff), ProductioNTakeOne (Optimizations), Pare (Help with Anim ID Player)
+-- Version: 1.2
 local IsCFrameEnabled
 if not getgenv().FrostwareConfig then 
 	getgenv().FrostwareConfig = {
