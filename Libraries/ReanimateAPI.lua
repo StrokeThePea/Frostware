@@ -157,6 +157,12 @@ function ReanimateAPI.StopScript()
 	local Head,Torso,Root,RA,LA,RL,LL = CloneChar.Head, CloneChar.Torso, CloneChar.HumanoidRootPart, CloneChar["Right Arm"], CloneChar["Left Arm"], CloneChar["Right Leg"], CloneChar["Left Leg"]
 	Root.RootJoint:Destroy()
 	Root.Anchored = true
+	pcall(function()
+		CloneChar.FrostwareAnimationPlayer:Destroy()  
+		CloneChar.FrostwareAnimationMusic:Destroy()
+		workspace.AntiScriptRun:Destroy()   
+		workspace.ScriptCheck:Destroy() 
+	end)
 	for Index,Objects in pairs(Torso:GetDescendants()) do
 		if Objects:IsA("Motor6D") then
 			Objects:Destroy()
@@ -184,21 +190,12 @@ function ReanimateAPI.StopScript()
 			end
 		end
 	end
-	if RealChar:FindFirstChild("Bullet") then
-
-	end
 	for Index,Objects in pairs(CloneChar.Humanoid:GetChildren()) do
 		if Objects:IsA("Animator") then
 			Objects:Destroy()
 		end
 		local NewAnimator = Instance.new("Animator", CloneChar.Humanoid)
 	end
-	pcall(function()
-		CloneChar:FindFirstChild("FrostwareAnimationPlayer"):Destroy()  
-		CloneChar:FindFirstChild("FrostwareAnimationMusic"):Destroy()
-		workspace:FindFirstChild("AntiScriptRun"):Destroy()   
-		workspace:FindFirstChild("ScriptCheck"):Destroy() 
-	end)
 	local function CreateJoint(Name,Part0,Part1,C0,C1)
 		local Joint = Instance.new("Motor6D")
 		Joint.Parent = Part0
