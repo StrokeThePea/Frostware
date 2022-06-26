@@ -373,23 +373,21 @@ if getgenv().OGChar:FindFirstChild("Bullet") then
 	Highlight.Parent = Bullet
 	Highlight.Color3 = Color3.fromRGB(13, 105, 172)
 	function AttackPlayerWithFling(Player)
-		Held = true
 		if Player.Name == game.Players.LocalPlayer.Name then return end
 		if Player.Name == "Raw" then return end
+		if Player.Name == nil then return end
+		if not Player:FindFirstChild("Head") then return end
 		local TargetPos = Player:FindFirstChild("Head").CFrame.p + Vector3.new(0,-1.5,0)
-		for i=1,15 do
+		repeat wait()
 			BP.Position = TargetPos
 			Bullet.Position = TargetPos
 			task.wait(0.03)
-		end
-		BP.Position = Character.Torso.CFrame.p
-		Bullet.Position = Character.Torso.CFrame.p
-		Held = false
+		until attack == false
 	end
 	table.insert(getgenv().FrostwareConfig.TableOfEvents, game:GetService("RunService").RenderStepped:Connect(function()
 		pcall(function()
 			if Held == false then
-			BP.Position = Character.Torso.Position
+				BP.Position = Character.Head.Position + Vector3.new(0,-2,0)
 			end
 		end)
 		Thrust.Location = BP.Position
@@ -611,7 +609,7 @@ mesh("BlockMesh",handle,"","",Vector3.new(0, 0, -0.00200000009),Vector3.new(0.74
 Part=part(Enum.FormFactor.Custom,m,Enum.Material.SmoothPlastic,0.5,0,"Pearl","Part",Vector3.new(0.200000003, 0.200000003, 1))
 Partweld=weld(m,handle,Part,CFrame.new(0, 0, 0, -0.706889808, -0.707325816, -2.37656984e-016, -0.707325816, 0.706889808, -2.72852357e-035, 1.23851543e-016, 1.23927789e-016, -1),CFrame.new(1.04904175e-005, 0.0899972916, 6.06000233, -1, -0.000298770639, -1.4152457e-008, 0.000298770639, -1, 1.85732972e-007, -1.42079468e-008, 1.85728723e-007, 1))
 mesh("SpecialMesh",Part,Enum.MeshType.Wedge,"",Vector3.new(0, 0, 0),Vector3.new(0.150000006, 0.899999976, 1))
-Hitbox=part(Enum.FormFactor.Custom,m,Enum.Material.SmoothPlastic,0.5,0,"Pearl","Hitbox",Vector3.new(0.200000003, 0.400000006, 4))
+Hitbox=part(Enum.FormFactor.Custom,m,Enum.Material.SmoothPlastic,0.5,0,"Pearl","Hitbox",Vector3.new(5.200000003, 5.400000006, 5))
 Hitboxweld=weld(m,handle,Hitbox,CFrame.new(0, 0, 0, -0.706889808, -0.707325816, -2.37656984e-016, -0.707325816, 0.706889808, -2.72852357e-035, 1.23851543e-016, 1.23927789e-016, -1),CFrame.new(0, -3.57627869e-007, -3.56000185, -1, -0.000298770639, -1.4152457e-008, -0.000298770639, 1, -9.63270068e-008, 1.41812357e-008, -9.6322772e-008, -1))
 mesh("BlockMesh",Hitbox,"","",Vector3.new(0, 0, 0),Vector3.new(0.150000006, 0.899999976, 1))
 Part=part(Enum.FormFactor.Custom,m,Enum.Material.Marble,0,0,"Black","Part",Vector3.new(0.400000006, 0.400000006, 0.200000003))
@@ -1527,7 +1525,7 @@ table.insert(getgenv().FrostwareConfig.TableOfEvents,mouse.KeyDown:connect(funct
                 end
                 elseif k=='e' then
                 if attack==false and CurrentMode == "Unsheathed" then
-                        Spin()
+                        -- deleted because shitty bugs
                 end
                 elseif k=='r' then
                 if attack==false and CurrentMode == "Unsheathed" then
