@@ -14,11 +14,11 @@ if workspace:FindFirstChild("ScriptCheck") then
 end
 local Hat1 = "METALXLIGHTSEER77Accessory"
 local Hat2 = "Red Sci-Fi Scattergun"
-if not game.Players.LocalPlayer.Character:FindFirstChild(HatName) then
+if not game.Players.LocalPlayer.Character:FindFirstChild(Hat1) then
     ReanimateAPI.Notification("Missing Hat: "..HatName)
     return
 end
-if not game.Players.LocalPlayer.Character:FindFirstChild(HatName2) then
+if not game.Players.LocalPlayer.Character:FindFirstChild(Hat2) then
     ReanimateAPI.Notification("Missing Hat: "..HatName2)
     return
 end
