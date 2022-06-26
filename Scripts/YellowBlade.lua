@@ -397,6 +397,43 @@ if getgenv().OGChar:FindFirstChild("Bullet") then
 	end))
 end
 
+
+local function ShowDamage(Pos, Text, Time, Color)
+	local Rate = (1 / 30)
+	local Pos = (Pos or Vector3.new(0, 0, 0))
+	local Text = (Text or "")
+	local Time = (Time or 2)
+	local Color = (Color or Color3.new(1, 0, 0))
+	local EffectPart = part("Custom",workspace,"SmoothPlastic",0,1,BrickColor.new(Color),"Effect",vt(0,0,0))
+	EffectPart.Anchored = true
+	local BillboardGui = Instance.new("BillboardGui")
+	BillboardGui.Size = UDim2.new(3, 0, 3, 0)
+	BillboardGui.Adornee = EffectPart
+	local TextLabel = Instance.new("TextLabel")
+	TextLabel.BackgroundTransparency = 1
+	TextLabel.Size = UDim2.new(1, 0, 1, 0)
+	TextLabel.Text = Text
+	TextLabel.TextColor3 = Color
+	TextLabel.TextScaled = true
+	TextLabel.Font = Enum.Font.ArialBold
+	TextLabel.Parent = BillboardGui
+	BillboardGui.Parent = EffectPart
+	game.Debris:AddItem(EffectPart, (Time + 0.1))
+	EffectPart.Parent = game:GetService("Workspace")
+	Delay(0, function()
+		local Frames = (Time / Rate)
+		for Frame = 1, Frames do
+			wait(Rate)
+			local Percent = (Frame / Frames)
+			EffectPart.CFrame = CFrame.new(Pos) + Vector3.new(0, Percent, 0)
+			TextLabel.TextTransparency = Percent
+		end
+		if EffectPart and EffectPart.Parent then
+			EffectPart:Destroy()
+		end
+	end)
+end
+
 local Damagefunc=function(Part,hit,minim,maxim,knockback,Type,Property,Delay,KnockbackType,decreaseblock)
         if hit.Parent==nil then
                 return
@@ -489,7 +526,7 @@ game:GetService("Debris"):AddItem(rl,.5)
                 vp.velocity=Property.CFrame.lookVector*knockback
                 end
                 if knockback>0 then
-                        vp.Parent=hit.Parent.Torso
+                        vp.Parent=hit.Parent.Head
                 end
                 game:GetService("Debris"):AddItem(vp,.5)
                 elseif Type=="Up" then
@@ -510,13 +547,13 @@ game:GetService("Debris"):AddItem(rl,.5)
                 bp.P=2000
                 bp.D=100
                 bp.maxForce=Vector3.new(math.huge,math.huge,math.huge)
-                bp.position=hit.Parent.Torso.Position
-                bp.Parent=hit.Parent.Torso
+                bp.position=hit.Parent.Head.Position
+                bp.Parent=hit.Parent.Head
                 game:GetService("Debris"):AddItem(bp,1)
                 elseif Type=="Target" then
 	            local Targetting = false
                 if Targetting==false then
-                ZTarget=hit.Parent.Torso
+                ZTarget=hit.Parent.Head
                 coroutine.resume(coroutine.create(function(Part) 
                 so("http://www.roblox.com/asset/?id=15666462",Part,1,1.5) 
                 swait(5)
@@ -567,41 +604,6 @@ game:GetService("Debris"):AddItem(rl,.5)
 end
 
 
-local function ShowDamage(Pos, Text, Time, Color)
-	local Rate = (1 / 30)
-	local Pos = (Pos or Vector3.new(0, 0, 0))
-	local Text = (Text or "")
-	local Time = (Time or 2)
-	local Color = (Color or Color3.new(1, 0, 0))
-	local EffectPart = part("Custom",workspace,"SmoothPlastic",0,1,BrickColor.new(Color),"Effect",vt(0,0,0))
-	EffectPart.Anchored = true
-	local BillboardGui = Instance.new("BillboardGui")
-	BillboardGui.Size = UDim2.new(3, 0, 3, 0)
-	BillboardGui.Adornee = EffectPart
-	local TextLabel = Instance.new("TextLabel")
-	TextLabel.BackgroundTransparency = 1
-	TextLabel.Size = UDim2.new(1, 0, 1, 0)
-	TextLabel.Text = Text
-	TextLabel.TextColor3 = Color
-	TextLabel.TextScaled = true
-	TextLabel.Font = Enum.Font.ArialBold
-	TextLabel.Parent = BillboardGui
-	BillboardGui.Parent = EffectPart
-	game.Debris:AddItem(EffectPart, (Time + 0.1))
-	EffectPart.Parent = game:GetService("Workspace")
-	Delay(0, function()
-		local Frames = (Time / Rate)
-		for Frame = 1, Frames do
-			wait(Rate)
-			local Percent = (Frame / Frames)
-			EffectPart.CFrame = CFrame.new(Pos) + Vector3.new(0, Percent, 0)
-			TextLabel.TextTransparency = Percent
-		end
-		if EffectPart and EffectPart.Parent then
-			EffectPart:Destroy()
-		end
-	end)
-end
 
 handle=part(Enum.FormFactor.Custom,m,Enum.Material.Marble,0,0,"Black","handle",Vector3.new(0.400000006, 0.400000006, 2.20000005))
 handleweld=weld(m,Character["Right Arm"],handle,CFrame.new(0, 0, 0, 1, 0, 0, 0, 0.999994874, 0, 0, 0, 1),CFrame.new(-0.758374214, 0.665901423, -0.105019093, -0.706889808, -0.707325816, -2.37656984e-016, -0.707325816, 0.706889808, -2.72852357e-035, 1.23851543e-016, 1.23927789e-016, -1))
@@ -1171,7 +1173,7 @@ Neck.C0=clerp(Neck.C0,necko*angles(math.rad(-0),math.rad(0),math.rad(50)),.3)
                 if hum12 and not hum12:IsDescendantOf(Character) then
                         so('http://roblox.com/asset/?id=220833976',Hitbox,1,1)
                         for i = 1,10 do
-                        BreakEffect(BrickColor.new("Institutional white"),hit.Parent.Torso.CFrame,0.5,math.random(5,20),0.5)
+                        BreakEffect(BrickColor.new("Institutional white"),hit.Parent.Head.CFrame,0.5,math.random(5,20),0.5)
                         end
                         hitconasdf:disconnect()
                 end
@@ -1290,7 +1292,7 @@ hitconasdf = Hitbox.Touched:connect(function(hit)
                 if hum12 and not hum12:IsDescendantOf(Character) then
                         so('http://roblox.com/asset/?id=220833976',Hitbox,1,1)
                         for i = 1,10 do
-                        BreakEffect(BrickColor.new("Institutional white"),hit.Parent.Torso.CFrame,0.5,math.random(5,20),0.5)
+                        BreakEffect(BrickColor.new("Institutional white"),hit.Parent.Head.CFrame,0.5,math.random(5,20),0.5)
                         end
                         hitconasdf:disconnect()
                 end
@@ -1334,7 +1336,7 @@ hitconasdf = Hitbox.Touched:connect(function(hit)
                 if hum12 and not hum12:IsDescendantOf(Character) then
                         so('http://roblox.com/asset/?id=220833976',Hitbox,1,1)
                         for i = 1,10 do
-                        BreakEffect(BrickColor.new("Institutional white"),hit.Parent.Torso.CFrame,0.5,math.random(5,20),0.5)
+                        BreakEffect(BrickColor.new("Institutional white"),hit.Parent.Head.CFrame,0.5,math.random(5,20),0.5)
                         end
                         hitconasdf:disconnect()
                 end
@@ -1380,7 +1382,7 @@ local function ContAttack()
                 if hum12 and not hum12:IsDescendantOf(Character) then
                         so('http://roblox.com/asset/?id=220833976',Hitbox,1,1)
                         for i = 1,10 do
-                        BreakEffect(BrickColor.new("Institutional white"),hit.Parent.Torso.CFrame,0.5,math.random(5,20),0.5)
+                        BreakEffect(BrickColor.new("Institutional white"),hit.Parent.Head.CFrame,0.5,math.random(5,20),0.5)
                         end
                         hitconasdf:disconnect()
                 end
