@@ -179,6 +179,7 @@ if getgenv().OGChar and getgenv().OGChar:FindFirstChild("Bullet") then
 				BP.Position = Reanim:FindFirstChild("Torso").Position 
 			end
 			Thrust.Location = BP.Position
+			Bullet.Rotation = Vector3.new(0,0,0)
 		end)
 	end))
 end
