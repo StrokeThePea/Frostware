@@ -15,11 +15,11 @@ end
 local Hat1 = "METALXLIGHTSEER77Accessory"
 local Hat2 = "Red Sci-Fi Scattergun"
 if not game.Players.LocalPlayer.Character:FindFirstChild(Hat1) then
-    ReanimateAPI.Notification("Missing Hat: "..HatName)
+    ReanimateAPI.Notification("Missing Hat: "..Hat1)
     return
 end
 if not game.Players.LocalPlayer.Character:FindFirstChild(Hat2) then
-    ReanimateAPI.Notification("Missing Hat: "..HatName2)
+    ReanimateAPI.Notification("Missing Hat: "..Hat2)
     return
 end
 
