@@ -89,7 +89,7 @@ function ReanimateAPI.Align(Part0,Part1,Position,Orientation)
 
     local AlignOrientation = Instance.new("AlignOrientation")
     AlignOrientation.Parent = Part0
-    AlignOrientation.MaxTorque = 13e9+1
+    AlignOrientation.MaxTorque = 15e9
     AlignOrientation.Responsiveness = 200
     AlignOrientation.Name = "FrostWareAO"
 
@@ -97,25 +97,29 @@ function ReanimateAPI.Align(Part0,Part1,Position,Orientation)
     Attachment1.Parent = Part0
     Attachment1.Position = Position or Vector3.new(0,0,0)
     Attachment1.Orientation = Orientation or Vector3.new(0,0,0)
-    Attachment1.Name = "FrostWareAtt
-	
-local AlignPosition2 = Instance.new("AlignPosition")
-AlignPosition2.Parent = Part0
-AlignPosition2.Name = "FrostWareAP2"
+    Attachment1.Name = "FrostWareAtt1"
+
+    local Attachment2 = Instance.new("Attachment")
+    Attachment2.Parent = Part1
+    Attachment2.Name = "FrostWareAtt2"
+
+    AlignPosition.Attachment0 = Attachment1
+    AlignPosition.Attachment1 = Attachment2
     task.spawn(function()
         task.wait(1) -- To avoid network losing this should fix it.
         -- Basically Weak Align then stronger align
+        local AlignPosition2 = Instance.new("AlignPosition")
+        AlignPosition2.Parent = Part0
+        AlignPosition2.Name = "FrostWareAP2"
         AlignPosition2.RigidityEnabled = true
         
         AlignPosition2.Attachment0 = Attachment1
         AlignPosition2.Attachment1 = Attachment2
     end)
-    AlignPosition.Attachment0 = Attachment1
-    AlignPosition.Attachment1 = Attachment2
-
     AlignOrientation.Attachment0 = Attachment1
     AlignOrientation.Attachment1 = Attachment2
-end
+end	
+
 function ReanimateAPI.CFrameAlign(Part0,Part1,OffSetPos,OffsetAngles)
 	local Pos = OffSetPos or CFrame.new(0,0,0)
 	local Angles = OffsetAngles or CFrame.Angles(0,0,0)
