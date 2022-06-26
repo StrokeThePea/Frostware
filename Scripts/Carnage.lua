@@ -12,10 +12,8 @@ if workspace:FindFirstChild("ScriptCheck") then
 	ReanimateAPI.Notification("Script Already Running! Stop script to continue.")
     return
 end
-ReanimateAPI.ScriptCheck()
---[[
-local HatName = "Hat1"
-local HatName2 = "Hat2"
+local Hat1 = "METALXLIGHTSEER77Accessory"
+local Hat2 = "Red Sci-Fi Scattergun"
 if not game.Players.LocalPlayer.Character:FindFirstChild(HatName) then
     ReanimateAPI.Notification("Missing Hat: "..HatName)
     return
@@ -24,9 +22,12 @@ if not game.Players.LocalPlayer.Character:FindFirstChild(HatName2) then
     ReanimateAPI.Notification("Missing Hat: "..HatName2)
     return
 end
-]]
+
+ReanimateAPI.ScriptCheck()
+
 
 local script = game:GetObjects("rbxassetid://10014432016")[1]
+task.wait(0.1)
 local function swait(dur)
 	if(dur == 0 or typeof(dur) ~= 'number')then
 		task.wait()
@@ -868,8 +869,7 @@ end
 --weap
 local SONG = 590141342
 
-local Hat1 = "METALXLIGHTSEER77Accessory"
-local Hat2 = "Red Sci-Fi Scattergun"
+
 Character[Hat1].Handle.AccessoryWeld:Destroy()
 Character[Hat2].Handle.AccessoryWeld:Destroy()
 local shotgunact = false
