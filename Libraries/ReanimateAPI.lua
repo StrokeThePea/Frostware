@@ -1,7 +1,7 @@
 
 -- Credits: Gelatek (Main Dev)
 -- Special Thanks: Mizt (Hat Renamer), Iss0 (Net Stuff), ProductionTakeOne (Optimizations), Pare (Help with Anim ID Player)
--- Version: 1.2.4
+-- Version: 1.2.5
 local IsCFrameEnabled
 if not getgenv().FrostwareConfig then 
 	getgenv().FrostwareConfig = {
@@ -231,17 +231,21 @@ function ReanimateAPI.StopScript()
 		end
 		if RealChar.Humanoid.RigType == Enum.HumanoidRigType.R15 then
 			RealChar:FindFirstChild("Bullet").Transparency = 0
-			local Hat = RealChar:FindFirstChild("SniperShoulderL")
-			Hat.Handle:ClearAllChildren()
-			ReanimateAPI.Align(RealChar:FindFirstChild("Bullet"), CloneChar:FindFirstChild("Left Arm"), Vector3.new(0,-0.4085,0), Vector3.new(0,0,0))
-			ReanimateAPI.Align(Hat.Handle, CloneChar:FindFirstChild("Left Arm"), Vector3.new(0,-0.52,0), Vector3.new(0,0,0))
+			if RealChar:FindFirstChild("SniperShoulderL") then
+				local Hat = RealChar:FindFirstChild("SniperShoulderL")
+				Hat.Handle:ClearAllChildren()
+				ReanimateAPI.Align(RealChar:FindFirstChild("Bullet"), CloneChar:FindFirstChild("Left Arm"), Vector3.new(0,-0.4085,0), Vector3.new(0,0,0))
+				ReanimateAPI.Align(Hat.Handle, CloneChar:FindFirstChild("Left Arm"), Vector3.new(0,-0.52,0), Vector3.new(0,0,0))
+			end
 		else
 			if not CloneChar:FindFirstChild("PDEATH DETECT") then
 				RealChar:FindFirstChild("Bullet").Transparency = 0
-				local Hat = RealChar:FindFirstChild("Robloxclassicred")
-				Hat.Handle:ClearAllChildren()
-				ReanimateAPI.Align(RealChar:FindFirstChild("Bullet"), CloneChar:FindFirstChild("Left Leg"))
-				ReanimateAPI.Align(Hat.Handle, CloneChar:FindFirstChild("Left Leg"), Vector3.new(0,0,0), Vector3.new(90,0,0))
+				if RealChar:FindFirstChild("Robloxclassicred") then
+					local Hat = RealChar:FindFirstChild("Robloxclassicred")
+					Hat.Handle:ClearAllChildren()
+					ReanimateAPI.Align(RealChar:FindFirstChild("Bullet"), CloneChar:FindFirstChild("Left Leg"))
+					ReanimateAPI.Align(Hat.Handle, CloneChar:FindFirstChild("Left Leg"), Vector3.new(0,0,0), Vector3.new(90,0,0))
+				end
 			else
 				RealChar:FindFirstChild("Bullet").Transparency = 1
 				ReanimateAPI.Align(RealChar:FindFirstChild("Bullet"), CloneChar:FindFirstChild("HumanoidRootPart"))
