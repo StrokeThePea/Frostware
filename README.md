@@ -1,3 +1,3 @@
 # Frostware
 
-# read license
+# read license pls
