@@ -361,7 +361,7 @@ end)
 -- Jumping
 Stuff.CreateSignal("UserInputService", "JumpRequest", function()
 	Stuff.Jumping(DummyHumanoid)
-end)S
+end)
 
 
 for i,v in pairs(CharDescendants) do
